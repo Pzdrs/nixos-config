@@ -6,6 +6,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./../../modules/common.nix
     ./vault-agent.nix
     ./docker.nix
     ./prometheus.nix
@@ -51,35 +52,10 @@
     ];
   };
 
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no";
-      AllowUsers = [ "pycrs" ];
-      MaxAuthTries = 3;
-    };
-  };
-
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-    ];
-  };
-
-  users.users.pycrs = {
-    isNormalUser = true;
-    home = "/home/pycrs";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      nixfmt
-      nixd
-    ];
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUwbzM9u3nedHK8xZkR5KKQZnMPfdddsT/Miqb4O+UP pycrs@Pycrs-PC"
     ];
   };
 
