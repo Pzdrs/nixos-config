@@ -36,20 +36,27 @@
         id = 999;
         interface = "ens19";
       };
+      _50_servers = {
+        id = 50;
+        interface = "ens19";
+      };
     };
 
-    interfaces._100_mgmt.ipv4.addresses = [
-      {
-        address = "10.100.0.2";
-        prefixLength = 24;
-      }
-    ];
-    interfaces._99_infra.ipv4.addresses = [
-      {
-        address = "10.99.0.5";
-        prefixLength = 24;
-      }
-    ];
+    interfaces = {
+      _100_mgmt.ipv4.addresses = [
+        {
+          address = "10.100.0.2";
+          prefixLength = 24;
+        }
+      ];
+      _99_infra.ipv4.addresses = [
+        {
+          address = "10.99.0.5";
+          prefixLength = 24;
+        }
+      ];
+      _50_servers = { };
+    };
   };
 
   networking.nftables.enable = true;
